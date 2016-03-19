@@ -9,7 +9,7 @@ window.modals = (function() {
         var mergedConf = {};
 
         for (var i in defaultConfig) {
-            if (customConf[i]) {
+            if (typeof customConf[i] !== 'undefined') {
                 mergedConf[i] = customConf[i];
             }
             else {
