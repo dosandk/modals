@@ -6,6 +6,27 @@
     <script src="index.js"></script>
 </head>
 <body>
+    <div class="modal">modal 1</div>
+    <div class="modal">modal 2</div>
+    <div class="modal">modal 3</div>
 
+    <div class="riba">riba 1</div>
+    <div class="riba">riba 2</div>
+    <div class="riba">riba 3</div>
+
+    <script>
+        var modalsElements = modals.initModal({
+            selector: '.riba',
+            title: 'title',
+            content: 'content',
+            closeBtn: 'close'
+        });
+
+//        modals.destroyModal({
+//            selector: '.riba'
+//        });
+
+        console.log(modalsElements);
+    </script>
 </body>
 </html>
