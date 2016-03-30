@@ -6,6 +6,29 @@
     <script src="index.js"></script>
 </head>
 <body>
+    <div class="modals">modals 1</div>
+    <div class="modals">modals 2</div>
+    <div class="modals">modals 3</div>
 
+    <div class="foo">foo 1</div>
+    <div class="foo">foo 2</div>
+    <div class="foo">foo 3</div>
+
+    <script>
+        modals.initModal({
+            content: 'super-content',
+            closeBtn: 'super-close'
+        });
+
+        modals.initModal({
+            selector: '.foo',
+            content: 'super-content',
+            closeBtn: 'super-close'
+        });
+
+        modals.destroyModal({
+            selector: '.foo'
+        });
+    </script>
 </body>
 </html>

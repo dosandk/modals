@@ -1,5 +1,6 @@
 window.modals = (function() {
     var defaultConfig = {
+        selector: '.modals',
         title: 'title',
         content: 'content',
         closeBtn: 'close'
@@ -20,6 +21,10 @@ window.modals = (function() {
         return mergedConf;
     }
 
+    function handler(e) {
+        console.log(e.target);
+    }
+
     function createModal() {
         console.error('someFunction1');
     }
@@ -38,8 +43,25 @@ window.modals = (function() {
             return defaultConfig;
         },
         initModal: function(config) {
+            var currentConfig = mergeConfig(config);
+            var selector = currentConfig.selector;
+            var elements = document.querySelectorAll(selector);
+            var elementsArr = Array.prototype.slice.call(elements);
 
-            return mergeConfig(config);
+            elementsArr.forEach(function(element) {
+                element.addEventListener('click', handler);
+            });
+        },
+        destroyModal: function(config) {
+            var selector = config.selector;
+            var elements = document.querySelectorAll(selector);
+            var elementsArr = Array.prototype.slice.call(elements);
+
+            elementsArr.forEach(function(element) {
+                element.removeEventListener('click', handler);
+            });
         }
     };
 }());
+
+//gulp-server-livereload
