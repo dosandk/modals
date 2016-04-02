@@ -22,11 +22,39 @@ window.modals = (function() {
     }
 
     function handler(e) {
-        console.log(e.target);
+        createModal(this.modals.config);
     }
 
-    function createModal() {
-        console.error('someFunction1');
+    function createModal(config) {
+        var mainContainer = document.createElement('div');
+
+        mainContainer.classList.add('modal');
+        mainContainer.setAttribute('id', 'myModal');
+
+        var modalContent = document.createElement('div');
+
+        modalContent.classList.add('modal-content');
+
+        var closeBtn = document.createElement('span');
+        var closeBtnTxt = document.createTextNode('x');
+
+        closeBtn.classList.add('close');
+        closeBtn.appendChild(closeBtnTxt);
+
+        var content = document.createElement('p');
+        var contentTxt = document.createTextNode(config.content);
+
+        content.appendChild(contentTxt);
+
+        modalContent.appendChild(closeBtn);
+        modalContent.appendChild(content);
+        mainContainer.appendChild(modalContent);
+
+        document.body.appendChild(mainContainer);
+
+        closeBtn.addEventListener('click', function() {
+            mainContainer.classList.add('hide');
+        });
     }
 
     return {
@@ -49,6 +77,8 @@ window.modals = (function() {
             var elementsArr = Array.prototype.slice.call(elements);
 
             elementsArr.forEach(function(element) {
+                element.modals = {};
+                element.modals.config = currentConfig;
                 element.addEventListener('click', handler);
             });
         },
@@ -58,6 +88,7 @@ window.modals = (function() {
             var elementsArr = Array.prototype.slice.call(elements);
 
             elementsArr.forEach(function(element) {
+                element.modals = {};
                 element.removeEventListener('click', handler);
             });
         }
